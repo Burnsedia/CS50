@@ -27,6 +27,11 @@ int main(void)
         {
             printf("#");
         }
+        printf(" ");
+        for (int k = 0; k < i + 1; k++)
+        {
+            printf("#");
+        }
 
         printf("\n");  // Move to next line (only once per row)
     }
