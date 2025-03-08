@@ -1,13 +1,34 @@
-#include "cs50.h"
-#include "stdio.h"
 
+#include <cs50.h>
+#include <stdio.h>
 
-int main(int argc, char *argv[])
+int main(void)
 {
-  int height =  get_int("Enter the hieght: ");
+    int height = get_int("Enter the height: ");
 
-  for (int i = 0;i < height; i++) {
-    printf("%*s%.*s\n", height - i, "", i+1, "########");
-  };
-  
+    // Validate input
+    if (height < 1 || height > 8)
+    {
+        printf("Invalid input. Please enter a number between 1 and 8.\n");
+        return 1;
+    }
+
+    // Loop through each row
+    for (int i = 0; i < height; i++)
+    {
+        // Print spaces
+        for (int j = 0; j < height - (i + 1); j++)
+        {
+            printf(" ");
+        }
+
+        // Print hashes
+        for (int k = 0; k < i + 1; k++)
+        {
+            printf("#");
+        }
+
+        printf("\n");  // Move to next line (only once per row)
+    }
 }
+
