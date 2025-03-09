@@ -1,39 +1,41 @@
-
 #include <cs50.h>
 #include <stdio.h>
 
 int main(void)
 {
-    int height = get_int("Enter the height: ");
-
-    // Validate input
-    if (height < 1 || height > 8)
+    int height;
+    do
     {
-        printf("Invalid input. Please enter a number between 1 and 8.\n");
-        return 1;
+        height = get_int("Height: ");
     }
+    while (height < 1 || height > 8);
 
-    // Loop through each row
-    for (int i = 0; i < height; i++)
+    // Loop to print the pyramid
+    for (int i = 1; i <= height; i++)
     {
-        // Print spaces
-        for (int j = 0; j < height - (i + 1); j++)
+        // Print spaces for left alignment
+        for (int j = 0; j < height - i; j++)
         {
             printf(" ");
         }
 
-        // Print hashes
-        for (int k = 0; k < i + 1; k++)
-        {
-            printf("#");
-        }
-        printf(" ");
-        for (int k = 0; k < i + 1; k++)
+        // Print left hashes
+        for (int j = 0; j < i; j++)
         {
             printf("#");
         }
 
-        printf("\n");  // Move to next line (only once per row)
+        // Print gap
+        printf("  ");
+
+        // Print right hashes
+        for (int j = 0; j < i; j++)
+        {
+            printf("#");
+        }
+
+        // Move to next line
+        printf("\n");
     }
 }
 
