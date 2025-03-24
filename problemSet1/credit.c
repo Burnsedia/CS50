@@ -1,6 +1,5 @@
 #include <cs50.h>
 #include <stdio.h>
-#include <math.h>
 
 int get_length(long number);
 int get_start_digits(long number, int length);
