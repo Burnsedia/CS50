@@ -1,6 +1,9 @@
 #include <cs50.h>
 #include <stdio.h>
 
+int left_tower(int height, int index);
+
+
 int main(void)
 {
     int height;
@@ -13,29 +16,34 @@ int main(void)
     // Loop to print the pyramid
     for (int i = 1; i <= height; i++)
     {
-        // Print spaces for left alignment
-        for (int j = 0; j < height - i; j++)
-        {
-            printf(" ");
-        }
+      left_tower(height,i);
 
-        // Print left hashes
-        for (int j = 0; j < i; j++)
-        {
-            printf("#");
-        }
+      // Print gap
+      printf("  ");
 
-        // Print gap
-        printf("  ");
+      // Print right hashes
+      for (int j = 0; j < i; j++)
+      {
+      printf("#");
+      }
 
-        // Print right hashes
-        for (int j = 0; j < i; j++)
-        {
-            printf("#");
-        }
-
-        // Move to next line
-        printf("\n");
+      // Move to next line
+      printf("\n");
     }
 }
 
+int left_tower(int height, int index)
+{
+   // Print spaces for left alignment
+  for (int j = 0; j < height - index; j++)
+  {
+    printf(" ");
+  }
+
+  // Print left hashes
+  for (int j = 0; j < index; j++)
+  {
+  printf("#");
+  }
+
+}
