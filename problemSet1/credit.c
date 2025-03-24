@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int get_length(long number);
-int get_start_digits(long number, int length);
+int get_fist_2_digits(long number, int length);
 bool luhn_check(long number);
 
 int main(void)
@@ -12,7 +12,7 @@ int main(void)
     if (luhn_check(number))
     {
         int length = get_length(number);
-        int start = get_start_digits(number, length);
+        int start = get_fist_2_digits(number, length);
 
         // Check for card type
         if ((start == 34 || start == 37) && length == 15)
@@ -67,13 +67,13 @@ int get_length(long number)
     int length = 0;
     while (number > 0)
     {
-        number /= 10;
+        number = number - 1;
         length++;
     }
     return length;
 }
 
-int get_start_digits(long number, int length)
+int get_fist_2_digits(long number, int length)
 {
     // Reduce number to first two digits
     while (length > 2)
