@@ -3,44 +3,88 @@
 #include <ctype.h>
 #include <string.h>
 
-string encrypt(string text, int key);
+bool valid_key(string key);
+string encrypt(string text, string key);
 
-
-int main(void)
+int main(int argc, string argv[])
 {
-    string text = get_string("Give your text to encrypt: ");
-    int key = get_int("Give me your key: ");
+    // Check input is the correct number of CLI args
+    if (argc != 2)
+    {
+        printf("Usage: ./substitution key\n");
+        return 1;
+    }
 
-    string cypherText = encrypt(text , key);
+    string key = argv[1];
 
-    printf("Encrypted message: %s\n", cypherText);
+    // Validate the key
+    if (!valid_key(key))
+    {
+        printf("Key must contain 26 unique alphabetic characters.\n");
+        return 1;
+    }
+
+    // Get plaintext
+    string text = get_string("plaintext: ");
+
+    // Encrypt using substitution key
+    string cypherText = encrypt(text, key);
+
+    // Output ciphertext
+    printf("ciphertext: %s\n", cypherText);
+
+    return 0;
 }
 
-
-string encypt(string text, int key){
-  // Visit character by character
+string encrypt(string text, string key)
+{
+    // Visit character by character
     for (int i = 0; text[i] != '\0'; i++)
     {
         char ch = text[i];
 
-        // Lowercase characters
-        if (islower(ch))
+        if (isupper(ch))
         {
-            ch = (ch - 'a' + key) % 26 + 'a';
+            int index = ch - 'A';
+            ch = toupper(key[index]);
         }
-        // Uppercase characters
-        else if (isupper(ch))
+        else if (islower(ch))
         {
-            ch = (ch - 'A' + key) % 26 + 'A';
+            int index = ch - 'a';
+            ch = tolower(key[index]);
         }
-        // Numbers
-        else if (isdigit(ch))
-        {
-            ch = (ch - '0' + key) % 10 + '0';
-        }
-        // For punctuation, spaces, etc. — just leave as is
+        // else: non-letters unchanged
 
         text[i] = ch;
     }
     return text;
 }
+
+bool valid_key(string key)
+{
+    int len = strlen(key);
+    if (len != 26)
+    {
+        return false;
+    }
+
+    bool seen[26] = {false};
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (!isalpha(key[i]))
+        {
+            return false;
+        }
+
+        int index = toupper(key[i]) - 'A';
+        if (seen[index])
+        {
+            // Duplicate letter
+            return false;
+        }
+        seen[index] = true;
+    }
+    return true;
+}
+
