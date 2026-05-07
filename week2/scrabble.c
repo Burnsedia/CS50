@@ -36,8 +36,10 @@ int main(void)
 // Compute the score of each word
 int compute_score(string word)
 {
+    // init the points at 0
     int points = 0;
-
+    
+    // loop though the word
     for (int i = 0; i < strlen(word); i++)
     {
         // Add the score for each letter
