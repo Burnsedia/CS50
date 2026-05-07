@@ -62,22 +62,29 @@ string encrypt(string text, string key)
 
 bool valid_key(string key)
 {
+    // get the length of the key
     int len = strlen(key);
+    // check if the length is 26 
     if (len != 26)
     {
         return false;
     }
-
+    
+    //create a bool array with a length of 26 set defualt vale to false
     bool seen[26] = {false};
-
+    
+    // iterate through the the key
     for (int i = 0; i < 26; i++)
     {
+        // check of the key at i is a letter/char
         if (!isalpha(key[i]))
         {
             return false;
         }
 
+        // set the index value
         int index = toupper(key[i]) - 'A';
+        // check if the index is in the seen array
         if (seen[index])
         {
             // Duplicate letter
