@@ -37,9 +37,12 @@ int main(void)
 
 int count_letters(string text)
 {
+    // start at 0 
     int count = 0;
+    //  interate through text
     for (int i = 0; i < strlen(text); i++)
     {
+      //  check if this is a char, if so inciment count
         if (isalpha(text[i]))
         {
             count++;
@@ -50,7 +53,9 @@ int count_letters(string text)
 
 int count_words(string text)
 {
-    int count = 1; // start at 1 because last word ends without a space
+    // start at 1 because last word ends without a space
+    int count = 1; 
+    // interate through the words and look for spaces "" and inciment count
     for (int i = 0; i < strlen(text); i++)
     {
         if (text[i] == ' ')
