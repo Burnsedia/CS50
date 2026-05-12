@@ -39,10 +39,11 @@ int count_letters(string text)
 {
     // start at 0 
     int count = 0;
+
     //  interate through text
     for (int i = 0; i < strlen(text); i++)
     {
-      //  check if this is a char, if so inciment count
+        // check if this is a char, if so inciment count
         if (isalpha(text[i]))
         {
             count++;
@@ -55,6 +56,7 @@ int count_words(string text)
 {
     // start at 1 because last word ends without a space
     int count = 1; 
+    
     // interate through the words and look for spaces "" and inciment count
     for (int i = 0; i < strlen(text); i++)
     {
@@ -69,6 +71,8 @@ int count_words(string text)
 int count_sentences(string text)
 {
     int count = 0;
+
+    // interate through the words and look for . ! and ? to find the end of sentences and inciment count
     for (int i = 0; i < strlen(text); i++)
     {
         if (text[i] == '.' || text[i] == '!' || text[i] == '?')
